@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <title>PENJUALAN</title>
+<head>
+    <body>
+        <h2>Tabel Barang</h2>
+        <table>
+            <tr>
+                <th>KODE</th>
+                <th>NAMA</th>
+                <th>HARGA</th>
+            </tr>
+            <tr>
+                <td>001</td>
+                <td>A</td>
+                <td>10000</td>
+            </tr>
+            <tr>
+                <td>002</td>
+                <td>B</td>
+                <td>20000</td>
+            </tr>
+            <tr>
+                <td>003</td>
+                <td>C</td>
+                <td>30000</td>
+            </tr>
+            
+        </table>
+    </body>
+  
+  <script>
+    const barang = {
+      '001': { nama: 'A', harga: 10000 },
+      '002': { nama: 'B', harga: 20000 },
+      '003': { nama: 'C', harga: 30000 }
+    };
+
+    function handlePembelian() {
+      const existingElements = document.querySelectorAll('.pos-input');
+      existingElements.forEach((element) => {
+        element.remove();
+      });
+
+      const kodeInput = document.createElement('input');
+      kodeInput.placeholder = 'Masukkan kode barang';
+      kodeInput.classList.add('pos-input');
+      document.body.appendChild(kodeInput);
+      
+
+      const jumlahInput = document.createElement('input');
+      jumlahInput.placeholder = 'Masukkan jumlah barang';
+      jumlahInput.classList.add('pos-input');
+      document.body.appendChild(jumlahInput);
+
+      const submitButton = document.createElement('button');
+      submitButton.textContent = 'Submit';
+      submitButton.onclick = function () {
+        const kode = kodeInput.value;
+        const jumlah = parseInt(jumlahInput.value);
+
+        if (barang.hasOwnProperty(kode)) {
+          const total = barang[kode].harga * jumlah;
+          alert(`Total pembayaran: Rp ${total}`);
+
+          const uangDibayarkan = prompt('Masukkan jumlah uang yang dibayarkan:');
+          const kembalian = uangDibayarkan - total;
+          alert(`Kembalian: Rp ${kembalian}`);
+
+          existingElements.forEach((element) => {
+            element.remove();
+          });
+        } else {
+          alert('Kode barang tidak valid.');
+        }
+      };
+
+      document.body.appendChild(submitButton);
+    }
+  </script>
+</head>
+<body>
+  <h1>PEMBELIAN</h1>
+  <button onclick="handlePembelian()">Buat Transaksi</button>
+</body>
+</html>
+bit.ly/UAPWEBGANJIL23-24
+    
